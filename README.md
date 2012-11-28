@@ -13,11 +13,11 @@ by John Millikin:
 
     Prelude> import qualified CPython as Py
     Prelude Py> import qualified Data.Text.IO as T
-    Prelude T Py> Py.initialize >> Py.getVersion >>= T.putStrLn
+    Prelude Py T> Py.initialize >> Py.getVersion >>= T.putStrLn
     2.7.3 (default, Apr 24 2012, 00:00:54) 
     [GCC 4.7.0 20120414 (prerelease)]
 
-And a slightly more complex example, using [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/):
+And a slightly more complex example, using [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/):
 
     {-# LANGUAGE OverloadedStrings #-}
     module Main where
@@ -27,17 +27,18 @@ And a slightly more complex example, using [BeautifulSoup](http://www.crummy.com
     import qualified CPython.Types as Py
     import qualified CPython.Types.Module as Py
     import qualified Data.Text as T
+    import qualified Data.Text.IO as T
 
     main = do
       Py.initialize
       doc <- fmap Py.toObject $ Py.toUnicode "<html><body><span>foo"
       bs4 <- Py.importModule "bs4"
       soup <- Py.getAttribute bs4 =<< Py.toUnicode "BeautifulSoup"
-      print =<< Py.fromUnicode =<< Py.string =<< Py.callArgs soup [doc]
+      T.putStrLn =<< Py.fromUnicode =<< Py.string =<< Py.callArgs soup [doc]
 
 This will print the following:
 
-    "<html><body><span>foo</span></body></html>"
+    <html><body><span>foo</span></body></html>
 
 The Python 2.7 support is still mostly untested.
 
