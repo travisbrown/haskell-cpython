@@ -246,10 +246,10 @@ PyObject *hscpython_poke_tuple (size_t count, PyObject **objs)
 void hscpython_PyBytes_Concat(PyObject **a, PyObject *b)
 { return PyBytes_Concat(a, b); }
 
-Py_ssize_t hscpython_PyString_Size(PyObject *a)
+Py_ssize_t hscpython_PyBytes_Size(PyObject *a)
 { return PyBytes_Size(a); }
 
-char *hscpython_PyString_AsString(PyObject *a)
+char *hscpython_PyBytes_AsString(PyObject *a)
 { return PyBytes_AsString(a); }
 
 int hscpython_PyBytes_AsStringAndSize(register PyObject *obj, char **s, register Py_ssize_t *len)
