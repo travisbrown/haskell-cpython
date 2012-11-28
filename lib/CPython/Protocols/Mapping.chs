@@ -72,17 +72,17 @@ castToMapping obj =
 	, withObject* `key'
 	} -> `Bool' #}
 
-{# fun PyMapping_Keys as keys
+{# fun hscpython_PyMapping_Keys as keys
 	`Mapping self' =>
 	{ withObject* `self'
 	} -> `List' stealObject* #}
 
-{# fun PyMapping_Values as values
+{# fun hscpython_PyMapping_Values as values
 	`Mapping self' =>
 	{ withObject* `self'
 	} -> `List' stealObject* #}
 
-{# fun PyMapping_Items as items
+{# fun hscpython_PyMapping_Items as items
 	`Mapping self' =>
 	{ withObject* `self'
 	} -> `List' stealObject* #}

@@ -35,7 +35,7 @@ module CPython.Protocols.Object
 	-- * Display and debugging
 	, print
 	, repr
-	, ascii
+--	, ascii
 	, string
 	, bytes
 	
@@ -187,10 +187,10 @@ print obj h = repr obj >>= U.fromUnicode >>= (hPutStrLn h . T.unpack)
 -- or @\U@ escapes. This generates a string similar to that returned by
 -- 'repr' in Python 2.
 -- 
-{# fun PyObject_ASCII as ascii
-	`Object self' =>
-	{ withObject* `self'
-	} -> `U.Unicode' stealObject* #}
+--{# fun PyObject_ASCII as ascii
+--	`Object self' =>
+--	{ withObject* `self'
+--	} -> `U.Unicode' stealObject* #}
 
 -- | Compute a string representation of object /self/, or throw an exception
 -- on failure. This is the equivalent of the Python expression @str(self)@.
@@ -203,7 +203,7 @@ print obj h = repr obj >>= U.fromUnicode >>= (hPutStrLn h . T.unpack)
 -- | Compute a bytes representation of object /self/, or throw an exception
 -- on failure. This is equivalent to the Python expression @bytes(self)@.
 -- 
-{# fun PyObject_Bytes as bytes
+{# fun hscpython_PyObject_Bytes as bytes
 	`Object self' =>
 	{ withObject* `self'
 	} -> `B.Bytes' stealObject* #}

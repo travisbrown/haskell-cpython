@@ -78,7 +78,7 @@ getItem dict key =
 	withObject dict $ \dict' ->
 	withObject key $ \key' -> do
 	{# call PyErr_Clear as ^ #}
-	raw <- {# call PyDict_GetItemWithError as ^ #} dict' key'
+	raw <- {# call PyDict_GetItem as ^ #} dict' key'
 	if raw /= nullPtr
 		then Just `fmap` peekObject raw
 		else do

@@ -37,7 +37,6 @@ PyTypeObject *hscpython_PyByteArray_Type ();
 PyTypeObject *hscpython_PyCell_Type ();
 PyTypeObject *hscpython_PyCode_Type ();
 PyTypeObject *hscpython_PyFunction_Type ();
-PyTypeObject *hscpython_PyInstanceMethod_Type ();
 PyTypeObject *hscpython_PyMethod_Type ();
 PyTypeObject *hscpython_PySet_Type ();
 PyTypeObject *hscpython_PyFrozenSet_Type ();
@@ -79,5 +78,16 @@ PyObject *hscpython_poke_list (size_t, PyObject **);
 /* Tuples */
 void hscpython_peek_tuple (PyObject *, Py_ssize_t, PyObject **);
 PyObject *hscpython_poke_tuple (size_t, PyObject **);
+
+void hscpython_PyBytes_Concat(PyObject **, PyObject *);
+Py_ssize_t hscpython_PyBytes_Size(PyObject *);
+char *hscpython_PyBytes_AsString(PyObject *);
+int hscpython_PyBytes_AsStringAndSize(register PyObject *, char **, register Py_ssize_t *);
+PyObject *hscpython_PyBytes_FromStringAndSize(const char *, Py_ssize_t);
+PyObject *hscpython_PyMethod_New(PyObject *, PyObject *);
+PyObject *hscpython_PyMapping_Items(PyObject *);
+PyObject *hscpython_PyMapping_Values(PyObject *);
+PyObject *hscpython_PyMapping_Keys(PyObject *);
+PyObject *hscpython_PyObject_Bytes(PyObject *);
 
 #endif

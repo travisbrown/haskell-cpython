@@ -26,7 +26,6 @@ module CPython.Types
 	, Exception
 	, CPython.Types.Float.Float
 	, Function
-	, InstanceMethod
 	, CPython.Types.Integer.Integer
 	, SequenceIterator
 	, CallableIterator
@@ -53,7 +52,7 @@ module CPython.Types
 	, dictionaryType
 	, floatType
 	, functionType
-	, instanceMethodType
+--	, instanceMethodType
 	, integerType
 	, sequenceIteratorType
 	, callableIteratorType
@@ -102,7 +101,6 @@ import CPython.Types.Dictionary
 import CPython.Types.Exception
 import CPython.Types.Float
 import CPython.Types.Function
-import CPython.Types.InstanceMethod
 import CPython.Types.Integer
 import CPython.Types.Iterator
 import CPython.Types.List

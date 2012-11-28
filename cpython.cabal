@@ -57,7 +57,6 @@ library
     CPython.Types.Exception
     CPython.Types.Float
     CPython.Types.Function
-    CPython.Types.InstanceMethod
     CPython.Types.Integer
     CPython.Types.Iterator
     CPython.Types.List
@@ -84,4 +83,4 @@ library
   c-sources: cbits/hscpython-shim.c
   include-dirs: cbits
 
-  pkgconfig-depends: python-3.1
+  pkgconfig-depends: python-2.7

@@ -102,9 +102,6 @@ PyTypeObject *hscpython_PyCode_Type ()
 PyTypeObject *hscpython_PyFunction_Type ()
 { return &PyFunction_Type; }
 
-PyTypeObject *hscpython_PyInstanceMethod_Type ()
-{ return &PyInstanceMethod_Type; }
-
 PyTypeObject *hscpython_PyMethod_Type ()
 { return &PyMethod_Type; }
 
@@ -245,3 +242,33 @@ PyObject *hscpython_poke_tuple (size_t count, PyObject **objs)
 	}
 	return tuple;
 }
+
+void hscpython_PyBytes_Concat(PyObject **a, PyObject *b)
+{ return PyBytes_Concat(a, b); }
+
+Py_ssize_t hscpython_PyString_Size(PyObject *a)
+{ return PyBytes_Size(a); }
+
+char *hscpython_PyString_AsString(PyObject *a)
+{ return PyBytes_AsString(a); }
+
+int hscpython_PyBytes_AsStringAndSize(register PyObject *obj, char **s, register Py_ssize_t *len)
+{ return PyBytes_AsStringAndSize(obj, s, len); }
+
+PyObject *hscpython_PyBytes_FromStringAndSize(const char *a, Py_ssize_t b)
+{ return PyBytes_FromStringAndSize(a, b); }
+
+PyObject *hscpython_PyMethod_New(PyObject *a, PyObject *b)
+{ return PyMethod_New(a, NULL, b); }
+
+PyObject *hscpython_PyMapping_Items(PyObject *o)
+{ return PyMapping_Items(o); }
+
+PyObject *hscpython_PyMapping_Values(PyObject *o)
+{ return PyMapping_Values(o); }
+
+PyObject *hscpython_PyMapping_Keys(PyObject *o)
+{ return PyMapping_Keys(o); }
+
+PyObject *hscpython_PyObject_Bytes(PyObject *o)
+{ return PyObject_Bytes(o); }

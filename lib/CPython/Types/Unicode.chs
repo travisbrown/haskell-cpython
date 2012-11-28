@@ -153,7 +153,7 @@ decode bytes enc errors =
 	withErrors errors $ \errorsPtr ->
 	alloca $ \bufferPtr ->
 	alloca $ \lenPtr -> do
-	{# call PyBytes_AsStringAndSize as ^ #} bytesPtr bufferPtr lenPtr
+	{# call hscpython_PyBytes_AsStringAndSize as ^ #} bytesPtr bufferPtr lenPtr
 		>>= checkStatusCode
 	buffer <- peek bufferPtr
 	len <- peek lenPtr

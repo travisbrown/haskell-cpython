@@ -19,7 +19,7 @@ module CPython.Types.Bytes
 	, bytesType
 	, toBytes
 	, fromBytes
-	, fromObject
+--	, fromObject
 	, length
 	, append
 	) where
@@ -44,7 +44,7 @@ instance Concrete Bytes where
 
 toBytes :: B.ByteString -> IO Bytes
 toBytes bytes = let
-	mkBytes = {# call PyBytes_FromStringAndSize as ^ #}
+	mkBytes = {# call hscpython_PyBytes_FromStringAndSize as ^ #}
 	in B.unsafeUseAsCStringLen bytes $ \(cstr, len) ->
 	   stealObject =<< mkBytes cstr (fromIntegral len)
 
@@ -53,7 +53,7 @@ fromBytes py =
 	alloca $ \bytesPtr ->
 	alloca $ \lenPtr ->
 	withObject py $ \pyPtr -> do
-	{# call PyBytes_AsStringAndSize as ^ #} pyPtr bytesPtr lenPtr
+	{# call hscpython_PyBytes_AsStringAndSize as ^ #} pyPtr bytesPtr lenPtr
 		>>= checkStatusCode
 	bytes <- peek bytesPtr
 	len <- peek lenPtr
@@ -62,12 +62,12 @@ fromBytes py =
 -- | Create a new byte string from any object which implements the buffer
 -- protocol.
 -- 
-{# fun PyBytes_FromObject as fromObject
-	`Object self ' =>
-	{ withObject* `self'
-	} -> `Bytes' stealObject* #}
+--{# fun PyBytes_FromObject as fromObject
+--	`Object self ' =>
+--	{ withObject* `self'
+--	} -> `Bytes' stealObject* #}
 
-{# fun PyBytes_Size as length
+{# fun hscpython_PyBytes_Size as length
 	{ withObject* `Bytes'
 	} -> `Integer' checkIntReturn* #}
 
@@ -78,7 +78,7 @@ append self next =
 	incref selfPtr
 	poke tempPtr selfPtr
 	withObject next $ \nextPtr -> do
-	{# call PyBytes_Concat as ^ #} tempPtr nextPtr
+	{# call hscpython_PyBytes_Concat as ^ #} tempPtr nextPtr
 	newSelf <- peek tempPtr
 	stealObject newSelf
 

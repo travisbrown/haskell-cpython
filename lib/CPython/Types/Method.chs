@@ -22,6 +22,7 @@ module CPython.Types.Method
 	, self
 	) where
 import CPython.Internal hiding (new)
+import Foreign (nullPtr)
 
 #include <hscpython-shim.h>
 
@@ -37,7 +38,7 @@ instance Concrete Method where
 {# fun pure hscpython_PyMethod_Type as methodType
 	{} -> `Type' peekStaticObject* #}
 
-{# fun PyMethod_New as new
+{# fun hscpython_PyMethod_New as new
 	`(Object func, Object self)' =>
 	{ withObject* `func'
 	, withObject* `self'
