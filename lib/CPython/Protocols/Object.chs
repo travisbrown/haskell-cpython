@@ -195,7 +195,7 @@ print obj h = repr obj >>= U.fromUnicode >>= (hPutStrLn h . T.unpack)
 -- | Compute a string representation of object /self/, or throw an exception
 -- on failure. This is the equivalent of the Python expression @str(self)@.
 -- 
-{# fun PyObject_Str as string
+{# fun PyObject_Unicode as string
 	`Object self' =>
 	{ withObject* `self'
 	} -> `U.Unicode' stealObject* #}
